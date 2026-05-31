@@ -11,7 +11,7 @@ import { QrCode, Download, Printer, ZoomIn, ZoomOut, Link as LinkIcon, Edit2 } f
 const GlobalQR = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [qrSize, setQrSize] = useState(300); // Default QR size in pixels
-  const [originUrl, setOriginUrl] = useState('http://localhost:5173');
+  const [originUrl, setOriginUrl] = useState('http://localhost:5173/presensi');
   const navigate = useNavigate();
 
   // Route Guard & Address Binding
@@ -20,7 +20,7 @@ const GlobalQR = () => {
       navigate('/login');
     }
     if (typeof window !== 'undefined') {
-      setOriginUrl(window.location.origin);
+      setOriginUrl(window.location.origin + '/presensi');
     }
   }, [navigate]);
 
