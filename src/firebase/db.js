@@ -167,9 +167,17 @@ export const listenToParticipants = (callback) => {
     const list = [];
     snapshot.forEach((doc) => {
       const data = doc.data();
+      let scannedAtStr = null;
+      if (data.scannedAt) {
+        if (typeof data.scannedAt.toDate === 'function') {
+          scannedAtStr = data.scannedAt.toDate().toISOString();
+        } else {
+          scannedAtStr = new Date().toISOString();
+        }
+      }
       list.push({
         ...data,
-        scannedAt: data.scannedAt ? data.scannedAt.toDate().toISOString() : null
+        scannedAt: scannedAtStr
       });
     });
     callback(list);
